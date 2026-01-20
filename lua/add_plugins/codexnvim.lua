@@ -247,11 +247,10 @@ return {
           end
         end
 
-        -- In terminal mode: leave terminal and close Codex
+        -- In terminal mode: leave terminal without immediately closing Codex
         vim.keymap.set("t", "<Esc>", function()
           api.nvim_feedkeys(esc_termcode, "nx", false)
-          vim.schedule(handle_escape)
-        end, { buffer = buf, noremap = true, silent = true, desc = "Codex: close on Esc (terminal)" })
+        end, { buffer = buf, noremap = true, silent = true, desc = "Codex: exit terminal on Esc" })
 
         -- In normal mode: close Codex directly
         vim.keymap.set(
