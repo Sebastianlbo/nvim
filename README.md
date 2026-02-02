@@ -1,6 +1,7 @@
 # Sebas' Neovim Config
 
-This repository is my full Neovim 0.10+ configuration. It is built around `lazy.nvim`, it uses a more minimal UI, a lot of temporary floating windows, and the Catppuccin mocha theme.
+This repository is my full Neovim 0.10+ configuration. It is built around `lazy.nvim`, it uses a kind of minimalistic UI, a lot of temporary floating windows, and the Catppuccin mocha theme.
+It evolved from over a year of daily use of LazyVim and later NvChad. After making too many changes to the core, I decided to start fresh with my own setup—both to simplify things and to better understand what’s going on in the config files. I’m still borrowing ideas, plugins, utils, etc. from both distros.
 
 <p align="center">
   <img src="assets/dashboard_nvim.png" alt="Dashboard preview" width="800">
