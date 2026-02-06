@@ -486,7 +486,7 @@ M.codex = {
 	plugin = true,
 
 	n = {
-		["<leader>cc"] = { "<cmd>CodexToggle<CR>i<bs>", "Toggle Codex" },
+		["<leader>cc"] = { "<cmd>CodexToggle<CR>", "Toggle Codex" },
 	},
 
 	v = {

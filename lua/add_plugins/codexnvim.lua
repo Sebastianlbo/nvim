@@ -237,28 +237,22 @@ return {
 
         local esc_termcode = api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
 
-        local function handle_escape()
-          if vim.v.hlsearch == 1 then
-            vim.cmd("nohlsearch")
-            return
-          end
+        local function close_codex()
           if package.loaded["codex"] and require("codex").close then
             require("codex").close()
           end
         end
 
         -- In terminal mode: leave terminal without immediately closing Codex
-        vim.keymap.set("t", "<Esc>", function()
-          api.nvim_feedkeys(esc_termcode, "nx", false)
-        end, { buffer = buf, noremap = true, silent = true, desc = "Codex: exit terminal on Esc" })
-
-        -- In normal mode: close Codex directly
         vim.keymap.set(
-          "n",
+          "t",
           "<Esc>",
-          handle_escape,
-          { buffer = buf, noremap = true, silent = true, desc = "Codex: close on Esc (normal)" }
+          esc_termcode,
+          { buffer = buf, noremap = true, silent = true, desc = "Codex: exit terminal on Esc" }
         )
+
+        -- Keep <Esc> for normal-mode movement; use q to close the Codex window instead
+        vim.keymap.set("n", "q", close_codex, { buffer = buf, noremap = true, silent = true, desc = "Codex: close" })
       end,
     })
   end,
