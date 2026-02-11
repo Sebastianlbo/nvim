@@ -76,6 +76,10 @@ M.general = {
 			"y:%s/<C-r>0//gc<Left><Left><Left>",
 			"Substitute selection everywhere with confirm",
 		},
+
+		-- Move selected line / block of text in visual mode
+		["J"] = { ":m '>+1<CR>gv=gv", "Move selection down", opts = { noremap = true } },
+		["K"] = { ":m '<-2<CR>gv=gv", "Move selection up", opts = { noremap = true } },
 	},
 
 	x = {
