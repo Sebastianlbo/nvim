@@ -274,7 +274,8 @@ M.telescope = {
 		["<leader>tj"] = { "<cmd>Telescope find_files<CR>", "Telescope Find Files" },
 		["<leader>ta"] = { "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
 		["<leader>to"] = { "<cmd>Telescope oldfiles<CR>", "Telescope Oldfiles" },
-		["<leader>td"] = { "<cmd>Telescope diagnostics<CR>", "Telescope Errors" },
+		["<leader>td"] = { "<cmd>Telescope diagnostics bufnr=0<CR>", "Telescope Diagnostics (current file)" },
+		["<leader>tad"] = { "<cmd>Telescope diagnostics<CR>", "Telescope All Diagnostics" },
 		["<leader>tw"] = { "<cmd>Telescope live_grep<CR>", "Telescope Grep Word" },
 		["<leader>tx"] = {
 			function()
