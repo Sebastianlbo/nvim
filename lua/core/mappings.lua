@@ -521,6 +521,27 @@ M.codex = {
 	-- },
 }
 
+-- Claude Code
+M.claudecode = {
+	plugin = true,
+
+	n = {
+		["<leader>cc"] = { "<cmd>ClaudeCode<cr>", "Toggle Claude" },
+		["<leader>cf"] = { "<cmd>ClaudeCodeFocus<cr>", "Focus Claude" },
+		["<leader>cr"] = { "<cmd>ClaudeCode --resume<cr>", "Resume Claude" },
+		["<leader>cC"] = { "<cmd>ClaudeCode --continue<cr>", "Continue Claude" },
+		["<leader>cm"] = { "<cmd>ClaudeCodeSelectModel<cr>", "Select Claude model" },
+		["<leader>cab"] = { "<cmd>ClaudeCodeAdd %<cr>", "Add current buffer" },
+		["<leader>cat"] = { "<cmd>ClaudeCodeTreeAdd<cr>", "Add file (tree)" },
+		["<leader>ca"] = { "<cmd>ClaudeCodeDiffAccept<cr>", "Accept diff" },
+		["<leader>cd"] = { "<cmd>ClaudeCodeDiffDeny<cr>", "Deny diff" },
+	},
+
+	v = {
+		["<leader>cs"] = { "<cmd>ClaudeCodeSend<cr>", "Send to Claude" },
+	},
+}
+
 -- Undotree
 M.undotree = {
 	plugin = true,
