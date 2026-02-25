@@ -434,6 +434,13 @@ M.gitsigns = {
 			"Git Diff this file",
 		},
 
+		["<leader>gdm"] = {
+			function()
+				require("gitsigns").diffthis("origin/main")
+			end,
+			"Git Diff against origin/main",
+		},
+
 		["<leader>gfs"] = {
 			function()
 				require("gitsigns").stage_buffer()
