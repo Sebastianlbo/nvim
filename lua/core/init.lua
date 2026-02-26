@@ -12,7 +12,7 @@ utils.load_mappings("general")
 g.transparency = false
 -------------------------------------- plugins -----------------------------------------
 
-local excluded = {}
+local excluded = { codexnvim }
 local plugins = utils.build_plugin_list(nil, { excluded = excluded })
 
 require("lazy").setup(plugins, utils.lazy_nvim)
@@ -35,11 +35,11 @@ opt.tabstop = 2
 opt.softtabstop = 2
 
 opt.fillchars = {
-  eob = " ",
-  vert = "│",
-  vertleft = "│",
-  vertright = "│",
-  verthoriz = "┼",
+	eob = " ",
+	vert = "│",
+	vertleft = "│",
+	vertright = "│",
+	verthoriz = "┼",
 }
 
 opt.ignorecase = true
@@ -75,7 +75,7 @@ opt.relativenumber = true
 
 -- disable some default providers
 for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
+	vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 -------------------------------------- autocmds ------------------------------------------
@@ -83,17 +83,17 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- dont list quickfix buffers
 autocmd("FileType", {
-  pattern = "qf",
-  callback = function()
-    vim.opt_local.buflisted = false
-  end,
+	pattern = "qf",
+	callback = function()
+		vim.opt_local.buflisted = false
+	end,
 })
 
 -- which keys off in terminal buffer
 autocmd("TermOpen", {
-  callback = function(ev)
-    vim.keymap.set("t", "<Space>", "<Space>", { buffer = ev.buf, nowait = true, silent = true })
-  end,
+	callback = function(ev)
+		vim.keymap.set("t", "<Space>", "<Space>", { buffer = ev.buf, nowait = true, silent = true })
+	end,
 })
 
 -- :git -> :Git

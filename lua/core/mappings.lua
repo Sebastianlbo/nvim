@@ -497,28 +497,28 @@ M.vim_slime = {
 M.codex = {
 	plugin = true,
 
-	n = {
-		["<leader>cc"] = { "<cmd>CodexToggle<CR>", "Toggle Codex" },
-	},
-
-	v = {
-		["<leader>cc"] = {
-			function()
-				local ok_lazy, lazy = pcall(require, "lazy")
-				if ok_lazy then
-					lazy.load({ plugins = { "codex.nvim" } })
-				end
-				local codex = require("codex")
-				if type(codex.send_visual_selection) == "function" then
-					codex.send_visual_selection()
-				else
-					vim.notify("codex.send_visual_selection is unavailable", vim.log.levels.WARN)
-				end
-			end,
-			"Send selection to Codex",
-			opts = { silent = true },
-		},
-	},
+	-- n = {
+	-- 	["<leader>cc"] = { "<cmd>CodexToggle<CR>", "Toggle Codex" },
+	-- },
+	--
+	-- v = {
+	-- 	["<leader>cc"] = {
+	-- 		function()
+	-- 			local ok_lazy, lazy = pcall(require, "lazy")
+	-- 			if ok_lazy then
+	-- 				lazy.load({ plugins = { "codex.nvim" } })
+	-- 			end
+	-- 			local codex = require("codex")
+	-- 			if type(codex.send_visual_selection) == "function" then
+	-- 				codex.send_visual_selection()
+	-- 			else
+	-- 				vim.notify("codex.send_visual_selection is unavailable", vim.log.levels.WARN)
+	-- 			end
+	-- 		end,
+	-- 		"Send selection to Codex",
+	-- 		opts = { silent = true },
+	-- 	},
+	-- },
 }
 
 -- Undotree
