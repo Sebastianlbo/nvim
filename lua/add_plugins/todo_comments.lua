@@ -13,6 +13,7 @@ return {
 			BUG = { icon = " ", color = "#FF8C00", alt = { "Bug", "bug" } },
 			REVIEW = { icon = " ", color = "#4FC3F7", alt = { "review", "Review" } },
 			DEEPREVIEW = { icon = " ", color = "#4FC3F7", alt = { "DEEP-REVIEW", "deep-review" } },
+			PRREVIEW = { icon = " ", color = "#00FF00", alt = { "PR-REVIEW", "PR-Review", "pr-review" } },
 			NEWCODE = {
 				icon = " ",
 				color = "#FF0000",
