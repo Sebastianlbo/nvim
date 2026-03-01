@@ -311,7 +311,10 @@ M.todo_comments = {
 	plugin = true,
 
 	n = {
-		["<leader>tt"] = { "<cmd>TodoTelescope keywords=BUG,REVIEW,DEEP-REVIEW<CR>", "Search custom todo keywords" },
+		["<leader>tt"] = {
+			"<cmd>TodoTelescope keywords=BUG,REVIEW,DEEPREVIEW,NEWCODE,PR-REVIEW<CR>",
+			"Search custom todo keywords",
+		},
 	},
 }
 
@@ -373,7 +376,7 @@ M.gitsigns = {
 	plugin = true,
 
 	n = {
-		["]c"] = {
+		["<leader>hn"] = {
 			function()
 				if vim.wo.diff then
 					return "]c"
@@ -387,7 +390,7 @@ M.gitsigns = {
 			opts = { expr = true },
 		},
 
-		["[c"] = {
+		["<leader>hp"] = {
 			function()
 				if vim.wo.diff then
 					return "[c"
@@ -436,20 +439,6 @@ M.gitsigns = {
 			"Toggle blame",
 		},
 
-		["<leader>gdt"] = {
-			function()
-				require("gitsigns").diffthis()
-			end,
-			"Git Diff this file",
-		},
-
-		["<leader>gdm"] = {
-			function()
-				require("gitsigns").diffthis("origin/main")
-			end,
-			"Git Diff against origin/main",
-		},
-
 		["<leader>gfs"] = {
 			function()
 				require("gitsigns").stage_buffer()
@@ -471,6 +460,7 @@ M.diffview = {
 	plugin = true,
 
 	n = {
+		["<leader>gdm"] = { "<cmd>DiffviewOpen origin/main<CR>", "Git Diff vs origin/main" },
 		["<leader>gda"] = { "<cmd>DiffviewOpen <CR>", "Git Diff files All" },
 		["<leader>gds"] = { "<cmd>DiffviewOpen --cached<CR>", "Git Diff Staged All" },
 	},
