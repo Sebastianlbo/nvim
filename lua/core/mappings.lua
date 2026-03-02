@@ -533,7 +533,7 @@ M.claudecode = {
 		["<leader>cm"] = { "<cmd>ClaudeCodeSelectModel<cr>", "Select Claude model" },
 		["<leader>cab"] = { "<cmd>ClaudeCodeAdd %<cr>", "Add current buffer" },
 		["<leader>cat"] = { "<cmd>ClaudeCodeTreeAdd<cr>", "Add file (tree)" },
-		["<leader>ca"] = { "<cmd>ClaudeCodeDiffAccept<cr>", "Accept diff" },
+		["<leader>caa"] = { "<cmd>ClaudeCodeDiffAccept<cr>", "Accept diff" },
 		["<leader>cd"] = { "<cmd>ClaudeCodeDiffDeny<cr>", "Deny diff" },
 	},
 
