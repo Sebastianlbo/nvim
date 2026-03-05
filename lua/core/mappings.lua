@@ -302,7 +302,7 @@ M.todo_comments = {
 	plugin = true,
 
 	n = {
-		["<leader>st"] = { "<cmd>TodoTelescope<CR>", "Search todos" },
+		["<leader>tt"] = { "<cmd>TodoTelescope keywords=BUG,REVIEW,DEEP-REVIEW<CR>", "Search custom todo keywords" },
 	},
 }
 
