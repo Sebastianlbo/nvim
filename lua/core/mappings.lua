@@ -266,6 +266,15 @@ M.telescope = {
 	n = {
 		["<leader>tgc"] = { "<cmd>Telescope git_commits<CR>", "Telescope Git Commits" },
 		["<leader>tgd"] = { "<cmd>Telescope git_status<CR>", "Telescope Git Diff" },
+		["<leader>tgu"] = {
+			function()
+				require("telescope.builtin").find_files({
+					find_command = { "git", "diff", "--name-only" },
+					prompt_title = "Unstaged Files",
+				})
+			end,
+			"Telescope Unstaged Files",
+		},
 		["<leader>tm"] = { "<cmd>Telescope marks<CR>", "Telescope Marks" },
 		["<BS><leader>"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
 		["<leader><BS>"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
