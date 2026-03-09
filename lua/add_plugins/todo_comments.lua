@@ -13,6 +13,11 @@ return {
 			BUG = { icon = " ", color = "#FF8C00", alt = { "Bug", "bug" } },
 			REVIEW = { icon = " ", color = "#4FC3F7", alt = { "review", "Review" } },
 			DEEPREVIEW = { icon = " ", color = "#4FC3F7", alt = { "DEEP-REVIEW", "deep-review" } },
+			NEWCODE = {
+				icon = " ",
+				color = "#FF0000",
+				alt = { "New-Code", "new-code", "newcode", "NEWCODE", "NEW-CODE" },
+			},
 		},
 		highlight = {
 			keyword = "fg",
