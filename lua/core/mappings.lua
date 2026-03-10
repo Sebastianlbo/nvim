@@ -19,6 +19,8 @@ M.general = {
 	n = {
 		["<Space>"] = { "<Nop>", silent = true },
 		["<BS>"] = { "<Nop>", silent = true },
+		["<leader>y"] = { "<Nop>", silent = true },
+		["<leader>o"] = { "<Nop>", silent = true },
 
 		["<leader>a"] = {
 			function()
@@ -233,13 +235,9 @@ M.nvimtree = {
 			"Focus First Split",
 		},
 
-		-- alias toggle
-		["<leader>n"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
-
-		-- focus
 		["<leader>e"] = {
 			function()
-				vim.cmd("NvimTreeFocus")
+				vim.cmd("NvimTreeToggle")
 				vim.cmd("NvimTreeRefresh")
 			end,
 			"Focus & refresh nvimtree",
@@ -530,9 +528,7 @@ M.claudecode = {
 		["<leader>cr"] = { "<cmd>ClaudeCode --resume<cr>", "Resume Claude" },
 		["<leader>cC"] = { "<cmd>ClaudeCode --continue<cr>", "Continue Claude" },
 		["<leader>cm"] = { "<cmd>ClaudeCodeSelectModel<cr>", "Select Claude model" },
-		["<leader>cab"] = { "<cmd>ClaudeCodeAdd %<cr>", "Add current buffer" },
-		["<leader>cat"] = { "<cmd>ClaudeCodeTreeAdd<cr>", "Add file (tree)" },
-		["<leader>caa"] = { "<cmd>ClaudeCodeDiffAccept<cr>", "Accept diff" },
+		["<leader>ca"] = { "<cmd>ClaudeCodeDiffAccept<cr>", "Accept diff" },
 		["<leader>cd"] = { "<cmd>ClaudeCodeDiffDeny<cr>", "Deny diff" },
 	},
 
