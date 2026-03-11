@@ -14,6 +14,8 @@ M.general = {
 
 		-- macOS-default deletions
 		["<A-BS>"] = { "<C-w>", "Delete previous word" }, -- Option + Backspace
+
+		["<C-Esc>"] = { "<Esc>", "Enter normal mode" },
 	},
 
 	n = {
@@ -65,8 +67,8 @@ M.general = {
 	},
 
 	t = {
-		["<Esc>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
-		["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+		["<Esc>"] = { "<C-\\><C-N>", "Escape terminal mode" },
+		["<C-Esc>"] = { "<C-\\><C-N>", "Enter normal mode" },
 	},
 
 	v = {
@@ -82,6 +84,8 @@ M.general = {
 		-- Move selected line / block of text in visual mode
 		["J"] = { ":m '>+1<CR>gv=gv", "Move selection down", opts = { noremap = true } },
 		["K"] = { ":m '<-2<CR>gv=gv", "Move selection up", opts = { noremap = true } },
+
+		["<C-Esc>"] = { "<Esc>", "Enter normal mode" },
 	},
 
 	x = {
@@ -90,6 +94,8 @@ M.general = {
 		-- Don't copy the replaced text after pasting in visual mode
 		-- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
 		["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
+
+		["<C-Esc>"] = { "<Esc>", "Enter normal mode" },
 	},
 }
 
@@ -310,7 +316,7 @@ M.todo_comments = {
 
 	n = {
 		["<leader>tt"] = {
-			"<cmd>TodoTelescope keywords=BUG,REVIEW,DEEPREVIEW,NEWCODE,PR-REVIEW<CR>",
+			"<cmd>TodoTelescope keywords=BUG,REVIEW,DEEPREVIEW,NEW-CODE,PR-REVIEW<CR>",
 			"Search custom todo keywords",
 		},
 	},
@@ -414,6 +420,13 @@ M.gitsigns = {
 				require("gitsigns").preview_hunk()
 			end,
 			"Hunk Preview",
+		},
+
+		["<leader>hr"] = {
+			function()
+				require("gitsigns").reset_hunk()
+			end,
+			"Hunk Restore",
 		},
 
 		["<leader>hu"] = {

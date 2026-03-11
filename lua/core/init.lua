@@ -111,7 +111,22 @@ vim.cmd([[
   cnoreabbrev <expr> Q getcmdtype() == ':' && getcmdline() =~# '^\s*Q\>' ? 'q' : 'Q'
 ]])
 
+-- :Q -> :q
+vim.cmd([[
+  cnoreabbrev <expr> Q getcmdtype() == ':' && getcmdline() =~# '^\s*Q\>' ? 'q' : 'Q'
+]])
+
+-- :1 -> :q
+vim.cmd([[
+  cnoreabbrev <expr> 1 getcmdtype() == ':' && getcmdline() =~# '^\s*1\>' ? 'q' : '1'
+]])
+
 -- :W -> :w
 vim.cmd([[
   cnoreabbrev <expr> W getcmdtype() == ':' && getcmdline() =~# '^\s*W\>' ? 'w' : 'W'
+]])
+
+-- :2 -> :w
+vim.cmd([[
+  cnoreabbrev <expr> 2 getcmdtype() == ':' && getcmdline() =~# '^\s*2\>' ? 'w' : 'w'
 ]])
