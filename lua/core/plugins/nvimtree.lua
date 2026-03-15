@@ -12,6 +12,15 @@ return {
       local api = require("nvim-tree.api")
       api.config.mappings.default_on_attach(bufnr)
 
+      vim.keymap.set("n", "<leader>y", function()
+        local node = api.tree.get_node_under_cursor()
+        if node then
+          local rel = vim.fn.fnamemodify(node.absolute_path, ":.")
+          vim.fn.setreg("+", rel)
+          vim.notify("Copied: " .. rel)
+        end
+      end, { buffer = bufnr, silent = true, desc = "Copy relative path" })
+
       vim.keymap.set("n", "<Esc>", function()
         if vim.v.hlsearch == 1 then
           vim.cmd("nohlsearch")
@@ -112,6 +121,7 @@ return {
   },
 
   config = function(_, opts)
+    _G._nvimtree_base_opts = opts
     require("nvim-tree").setup(opts)
 
     local function set_gitignored_grey()

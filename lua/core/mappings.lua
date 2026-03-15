@@ -22,7 +22,7 @@ M.general = {
 		["<Space>"] = { "<Nop>", silent = true },
 		["<BS>"] = { "<Nop>", silent = true },
 		["<leader>y"] = { "<Nop>", silent = true },
-		["<leader>o"] = { "<Nop>", silent = true },
+		["<leader>cc"] = { "<Nop>", silent = true },
 
 		["<leader>a"] = {
 			function()
@@ -243,10 +243,38 @@ M.nvimtree = {
 
 		["<leader>e"] = {
 			function()
-				vim.cmd("NvimTreeToggle")
-				vim.cmd("NvimTreeRefresh")
+				local api = require("nvim-tree.api")
+				if api.tree.is_visible() then
+					api.tree.close()
+				else
+					if _G._nvimtree_base_opts then
+						require("nvim-tree").setup(_G._nvimtree_base_opts)
+					end
+					api.tree.open()
+				end
 			end,
-			"Focus & refresh nvimtree",
+			"Toggle nvim-tree float",
+		},
+
+		["<leader>o"] = {
+			function()
+				local api = require("nvim-tree.api")
+				if api.tree.is_visible() then
+					api.tree.close()
+				else
+					local base = _G._nvimtree_base_opts or {}
+					local right_opts = vim.tbl_deep_extend("force", base, {
+						view = {
+							side = "right",
+							width = 40,
+							float = { enable = false },
+						},
+					})
+					require("nvim-tree").setup(right_opts)
+					api.tree.open()
+				end
+			end,
+			"Toggle nvim-tree right column",
 		},
 	},
 }
