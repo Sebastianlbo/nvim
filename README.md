@@ -66,7 +66,7 @@ LICENSE                  -- MIT license for the configuration.
 
   `<leader>v` toggles a vertical split terminal,
 
-  `leader>ss` sends the current line or visual selection to the terminal (used with iPython),
+  `<leader>ss` sends the current line or visual selection to the terminal (used with iPython),
 
   `<leader>sh` split horizontally,
 
@@ -74,7 +74,9 @@ LICENSE                  -- MIT license for the configuration.
 
   `<C-h>`, `<C-j>`, `<C-k>`, `<C-l>` navigate between splits.
 
-  `<leader>n` / `<leader>e` to respectively toggle/focus floating `nvim-tree` when you want to search project manually.
+  `<leader>e` to toggle a floating `nvim-tree`,
+
+  `<leader>o` to toggle `nvim-tree` as a right-column sidebar.
 
 - **Files & Search (Basically Telescope)**:
 
@@ -98,7 +100,7 @@ LICENSE                  -- MIT license for the configuration.
 
   `<leader>gs` launches LazyGit,
 
-  `[c` and `]c` jump between hunks,
+  `<leader>hn` / `<leader>hp` jump to next/prev hunk,
 
   `<leader>hs`/`<leader>hu` stage or undo the current hunk,
 
@@ -130,7 +132,15 @@ LICENSE                  -- MIT license for the configuration.
 
   `<leader>u` pops open Undotree,
 
-  `<leader>cc` toggles the Codex assistant sidebar
+  `<leader>cv` toggles the Claude Code terminal,
+
+  `<leader>cf` focuses Claude Code,
+
+  `<leader>cr` / `<leader>cC` resume or continue a session,
+
+  `<leader>ca` / `<leader>cd` accept or deny a diff,
+
+  `<leader>cs` (visual) sends the selection to Claude
 
 ## License
 
