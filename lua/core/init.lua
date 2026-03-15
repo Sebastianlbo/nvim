@@ -96,42 +96,4 @@ autocmd("TermOpen", {
 	end,
 })
 
--- :git -> :Git
-vim.cmd([[
-  cnoreabbrev <expr> git getcmdtype() == ':' && getcmdline() =~# '^\s*git\>' ? 'Git' : 'git'
-]])
-
--- :telescope -> :Telescope
-vim.cmd([[
-  cnoreabbrev <expr> telescope getcmdtype() == ':' && getcmdline() =~# '^\s*telescope\>' ? 'Telescope' : 'telescope'
-]])
-
--- :Q -> :q
-vim.cmd([[
-  cnoreabbrev <expr> Q getcmdtype() == ':' && getcmdline() =~# '^\s*Q\>' ? 'q' : 'Q'
-]])
-
--- :Q -> :q
-vim.cmd([[
-  cnoreabbrev <expr> Q getcmdtype() == ':' && getcmdline() =~# '^\s*Q\>' ? 'q' : 'Q'
-]])
-
--- :1 -> :q
-vim.cmd([[
-  cnoreabbrev <expr> 1 getcmdtype() == ':' && getcmdline() =~# '^\s*1\>' ? 'q' : '1'
-]])
-
--- :1a -> :qa
-vim.cmd([[
-  cnoreabbrev <expr> 1a getcmdtype() == ':' && getcmdline() =~# '^\s*1a\>' ? 'qa' : '1a'
-]])
-
--- :W -> :w
-vim.cmd([[
-  cnoreabbrev <expr> W getcmdtype() == ':' && getcmdline() =~# '^\s*W\>' ? 'w' : 'W'
-]])
-
--- :2 -> :w
-vim.cmd([[
-  cnoreabbrev <expr> 2 getcmdtype() == ':' && getcmdline() =~# '^\s*2\>' ? 'w' : 'w'
-]])
+require("core.abbreviations")
