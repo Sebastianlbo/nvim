@@ -43,18 +43,22 @@ M.general = {
 		["<C-j>"] = { "<C-w>j", "Window down" },
 		["<C-k>"] = { "<C-w>k", "Window up" },
 
-		-- save
-		["<C-s>"] = { "<cmd> w <CR>", "Save file" },
-
-		-- line numbers
-		["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
-
 		-- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 		-- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
 		["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 		["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
 		["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
 		["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+
+		["yc"] = {
+			function()
+				local line = vim.api.nvim_get_current_line()
+				local row = vim.api.nvim_win_get_cursor(0)[1]
+				vim.api.nvim_buf_set_lines(0, row, row, false, { line })
+				require("Comment.api").toggle.linewise.current()
+			end,
+			"Duplicate line and comment original",
+		},
 
 		["<leader>fm"] = {
 			function()
@@ -564,13 +568,11 @@ M.claudecode = {
 	plugin = true,
 
 	n = {
-		["<leader>cc"] = { "<cmd>ClaudeCode<cr>", "Toggle Claude" },
+		["<leader>cv"] = { "<cmd>ClaudeCode<cr>", "Toggle Claude" },
 		["<leader>cf"] = { "<cmd>ClaudeCodeFocus<cr>", "Focus Claude" },
 		["<leader>cr"] = { "<cmd>ClaudeCode --resume<cr>", "Resume Claude" },
 		["<leader>cC"] = { "<cmd>ClaudeCode --continue<cr>", "Continue Claude" },
 		["<leader>cm"] = { "<cmd>ClaudeCodeSelectModel<cr>", "Select Claude model" },
-		["<leader>ca"] = { "<cmd>ClaudeCodeDiffAccept<cr>", "Accept diff" },
-		["<leader>cd"] = { "<cmd>ClaudeCodeDiffDeny<cr>", "Deny diff" },
 	},
 
 	v = {
