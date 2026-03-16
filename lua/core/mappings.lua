@@ -291,6 +291,15 @@ M.telescope = {
 		["<BS><leader>"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
 		["<leader><BS>"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
 		["<leader>th"] = { "<cmd>Telescope help_tags <CR>", "Help page" },
+		["<leader>tM"] = {
+			function()
+				require("telescope.builtin").live_grep({
+					prompt_title = "Search Mappings",
+					search_dirs = { vim.fn.stdpath("config") .. "/lua/core/mappings.lua" },
+				})
+			end,
+			"Search Mappings",
+		},
 		["<leader>tjj"] = {
 			"<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>",
 			"Find Files (all)",
