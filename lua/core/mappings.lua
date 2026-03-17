@@ -13,7 +13,7 @@ M.general = {
 		["<C-k>"] = { "<Up>", "Move up" },
 
 		-- macOS-default deletions
-		["<A-BS>"] = { "<C-w>", "Delete previous word" }, -- Option + Backspace
+		["<A-BS>"] = { "<C-w>", "Delete previous word" },
 
 		["<C-Esc>"] = { "<Esc>", "Enter normal mode" },
 	},
@@ -23,6 +23,7 @@ M.general = {
 		["<BS>"] = { "<Nop>", silent = true },
 		["<leader>y"] = { "<Nop>", silent = true },
 		["<leader>cc"] = { "<Nop>", silent = true },
+		["q:"] = { "<Nop>", silent = true },
 
 		["<leader>a"] = {
 			function()
@@ -180,55 +181,25 @@ M.lspconfig = {
 			"LSP references",
 		},
 
-		["<leader>lf"] = {
+		["<leader>df"] = {
 			function()
 				vim.diagnostic.open_float()
 			end,
 			"Floating diagnostic",
 		},
 
-		["[d"] = {
+		["<leader>dp"] = {
 			function()
 				vim.diagnostic.goto_prev({ float = { border = "rounded" } })
 			end,
 			"Goto prev",
 		},
 
-		["]d"] = {
+		["<leader>dn"] = {
 			function()
 				vim.diagnostic.goto_next({ float = { border = "rounded" } })
 			end,
 			"Goto next",
-		},
-
-		["<leader>wa"] = {
-			function()
-				vim.lsp.buf.add_workspace_folder()
-			end,
-			"Add workspace folder",
-		},
-
-		["<leader>wr"] = {
-			function()
-				vim.lsp.buf.remove_workspace_folder()
-			end,
-			"Remove workspace folder",
-		},
-
-		["<leader>wl"] = {
-			function()
-				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end,
-			"List workspace folders",
-		},
-	},
-
-	v = {
-		["<leader>ca"] = {
-			function()
-				vim.lsp.buf.code_action()
-			end,
-			"LSP code action",
 		},
 	},
 }
@@ -300,6 +271,11 @@ M.telescope = {
 	plugin = true,
 
 	n = {
+		["_"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
+		["<leader>tt"] = {
+			"<cmd>TodoTelescope keywords=BUG,REVIEW,DEEPREVIEW,NEW-CODE,PR-REVIEW<CR>",
+			"Search custom todo keywords",
+		},
 		["<leader>tgc"] = { "<cmd>Telescope git_commits<CR>", "Telescope Git Commits" },
 		["<leader>tgd"] = { "<cmd>Telescope git_status<CR>", "Telescope Git Diff" },
 		["<leader>tgu"] = {
@@ -314,14 +290,38 @@ M.telescope = {
 		["<leader>tm"] = { "<cmd>Telescope marks<CR>", "Telescope Marks" },
 		["<BS><leader>"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
 		["<leader><BS>"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
-		["_"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
 		["<leader>th"] = { "<cmd>Telescope help_tags <CR>", "Help page" },
-		["<leader>tj"] = { "<cmd>Telescope find_files<CR>", "Telescope Find Files" },
-		["<leader>ta"] = { "<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
+		["<leader>tjj"] = {
+			"<cmd>Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+			"Find Files (all)",
+		},
+		["<leader>tji"] = {
+			function()
+				require("telescope.builtin").find_files({
+					find_command = { "rg", "--files", "--hidden", "--follow", "-g", "!**/.git/*" },
+				})
+			end,
+			"Find Files (non-ignored)",
+		},
 		["<leader>to"] = { "<cmd>Telescope oldfiles<CR>", "Telescope Oldfiles" },
 		["<leader>td"] = { "<cmd>Telescope diagnostics bufnr=0<CR>", "Telescope Diagnostics (current file)" },
 		["<leader>tad"] = { "<cmd>Telescope diagnostics<CR>", "Telescope All Diagnostics" },
-		["<leader>tw"] = { "<cmd>Telescope live_grep<CR>", "Telescope Grep Word" },
+		["<leader>tww"] = {
+			function()
+				require("telescope.builtin").live_grep({
+					additional_args = { "--no-ignore", "--hidden" },
+				})
+			end,
+			"Live Grep (all)",
+		},
+		["<leader>twi"] = {
+			function()
+				require("telescope.builtin").live_grep({
+					additional_args = { "--hidden", "--follow", "-g", "!**/.git/*" },
+				})
+			end,
+			"Live Grep (non-ignored)",
+		},
 		["<leader>tx"] = {
 			function()
 				require("telescope.builtin").live_grep({
@@ -338,18 +338,6 @@ M.telescope = {
 				)
 			end,
 			"Telescope Find",
-		},
-	},
-}
-
--- Todo Comments
-M.todo_comments = {
-	plugin = true,
-
-	n = {
-		["<leader>tt"] = {
-			"<cmd>TodoTelescope keywords=BUG,REVIEW,DEEPREVIEW,NEW-CODE,PR-REVIEW<CR>",
-			"Search custom todo keywords",
 		},
 	},
 }
@@ -535,48 +523,20 @@ M.vim_slime = {
 	},
 }
 
--- Codex
-M.codex = {
-	plugin = true,
-
-	-- n = {
-	-- 	["<leader>cc"] = { "<cmd>CodexToggle<CR>", "Toggle Codex" },
-	-- },
-	--
-	-- v = {
-	-- 	["<leader>cc"] = {
-	-- 		function()
-	-- 			local ok_lazy, lazy = pcall(require, "lazy")
-	-- 			if ok_lazy then
-	-- 				lazy.load({ plugins = { "codex.nvim" } })
-	-- 			end
-	-- 			local codex = require("codex")
-	-- 			if type(codex.send_visual_selection) == "function" then
-	-- 				codex.send_visual_selection()
-	-- 			else
-	-- 				vim.notify("codex.send_visual_selection is unavailable", vim.log.levels.WARN)
-	-- 			end
-	-- 		end,
-	-- 		"Send selection to Codex",
-	-- 		opts = { silent = true },
-	-- 	},
-	-- },
-}
-
 -- Claude Code
 M.claudecode = {
 	plugin = true,
 
 	n = {
-		["<leader>cv"] = { "<cmd>ClaudeCode<cr>", "Toggle Claude" },
-		["<leader>cf"] = { "<cmd>ClaudeCodeFocus<cr>", "Focus Claude" },
-		["<leader>cr"] = { "<cmd>ClaudeCode --resume<cr>", "Resume Claude" },
-		["<leader>cC"] = { "<cmd>ClaudeCode --continue<cr>", "Continue Claude" },
-		["<leader>cm"] = { "<cmd>ClaudeCodeSelectModel<cr>", "Select Claude model" },
+		["<leader>cv"] = { "<cmd>ClaudeCode<cr>", "Claude View Buffer Toggle" },
+		["<leader>cf"] = { "<cmd>ClaudeCodeFocus<cr>", "Claude Focus" },
+		["<leader>cr"] = { "<cmd>ClaudeCode --resume<cr>", "Claude Resume" },
+		["<leader>cC"] = { "<cmd>ClaudeCode --continue<cr>", "Claude Continue" },
+		["<leader>cm"] = { "<cmd>ClaudeCodeSelectModel<cr>", "Claude Model Select" },
 	},
 
 	v = {
-		["<leader>cs"] = { "<cmd>ClaudeCodeSend<cr>", "Send to Claude" },
+		["<leader>cs"] = { "<cmd>ClaudeCodeSend<cr>", "Claude Send" },
 	},
 }
 
