@@ -18,9 +18,11 @@ return {
 			---@type snacks.win.Config|{}
 			snacks_win_opts = {
 				position = "float",
+				row = 0.125,
+				col = 0.125,
 				width = 0.75,
 				height = 0.75,
-				border = "double",
+				border = "single",
 				keys = {
 					term_normal = {
 						"<C-Esc>",
