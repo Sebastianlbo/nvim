@@ -222,8 +222,9 @@ M.nvimtree = {
 				if api.tree.is_visible() then
 					api.tree.close()
 				else
-					if _G._nvimtree_base_opts then
-						require("nvim-tree").setup(_G._nvimtree_base_opts)
+					if _G._nvimtree_mode ~= "float" then
+						require("nvim-tree").setup(_G._nvimtree_base_opts or {})
+						_G._nvimtree_mode = "float"
 					end
 					api.tree.open()
 				end
@@ -237,15 +238,18 @@ M.nvimtree = {
 				if api.tree.is_visible() then
 					api.tree.close()
 				else
-					local base = _G._nvimtree_base_opts or {}
-					local right_opts = vim.tbl_deep_extend("force", base, {
-						view = {
-							side = "right",
-							width = 40,
-							float = { enable = false },
-						},
-					})
-					require("nvim-tree").setup(right_opts)
+					if _G._nvimtree_mode ~= "right" then
+						local base = _G._nvimtree_base_opts or {}
+						local right_opts = vim.tbl_deep_extend("force", base, {
+							view = {
+								side = "right",
+								width = 40,
+								float = { enable = false },
+							},
+						})
+						require("nvim-tree").setup(right_opts)
+						_G._nvimtree_mode = "right"
+					end
 					api.tree.open()
 				end
 			end,

@@ -122,6 +122,7 @@ return {
 
   config = function(_, opts)
     _G._nvimtree_base_opts = opts
+    _G._nvimtree_mode = "float"
     require("nvim-tree").setup(opts)
 
     local function set_gitignored_grey()
