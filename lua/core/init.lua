@@ -9,7 +9,7 @@ mappings = require("core.mappings")
 utils.load_mappings("general")
 
 -------------------------------------- globals -----------------------------------------
-g.transparency = false
+g.transparency = true
 -------------------------------------- plugins -----------------------------------------
 
 local excluded = { codexnvim }

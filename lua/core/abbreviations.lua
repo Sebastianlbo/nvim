@@ -1,9 +1,4 @@
-local function abbrev(from, to)
-  vim.cmd(string.format(
-    [[cnoreabbrev <expr> %s getcmdtype() == ':' && getcmdline() =~# '^\s*%s\>' ? '%s' : '%s']],
-    from, from, to, from
-  ))
-end
+local abbrev = require("utils").abbrev
 
 -- plugin commands
 abbrev("git",       "Git")

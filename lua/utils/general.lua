@@ -26,4 +26,11 @@ function M.setup_mason_path()
   end
 end
 
+function M.abbrev(from, to)
+  vim.cmd(string.format(
+    [[cnoreabbrev <expr> %s getcmdtype() == ':' && getcmdline() =~# '^\s*%s\>' ? '%s' : '%s']],
+    from, from, to, from
+  ))
+end
+
 return M
