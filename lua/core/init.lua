@@ -8,21 +8,21 @@ g.mapleader = " "
 mappings = require("core.mappings")
 utils.load_mappings("general")
 
--------------------------------------- globals -----------------------------------------
-g.transparency = true
--------------------------------------- plugins -----------------------------------------
+require("core.abbreviations")
 
+-------------------------------------- plugins -----------------------------------------
 local excluded = { codexnvim }
 local plugins = utils.build_plugin_list(nil, { excluded = excluded })
 
 require("lazy").setup(plugins, utils.lazy_nvim)
+
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3
 opt.showmode = true
 
-opt.cmdheight = 1 -- modern UI: command line only when needed
+opt.cmdheight = 1
 opt.pumheight = 8 -- keep completion menu short so docs have room
-opt.scrolloff = 5 -- avoid sitting on the last line in the first place
+opt.scrolloff = 10 -- avoid sitting on the last line in the first place
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
@@ -95,5 +95,3 @@ autocmd("TermOpen", {
 		vim.keymap.set("t", "<Space>", "<Space>", { buffer = ev.buf, nowait = true, silent = true })
 	end,
 })
-
-require("core.abbreviations")
