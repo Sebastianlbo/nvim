@@ -19,11 +19,11 @@ M.general = {
 	},
 
 	n = {
-		["<Space>"] = { "<Nop>", silent = true },
-		["<BS>"] = { "<Nop>", silent = true },
-		["<leader>y"] = { "<Nop>", silent = true },
-		["<leader>cc"] = { "<Nop>", silent = true },
-		["q:"] = { "<Nop>", silent = true },
+		["<Space>"] = { "<Nop>", "Disabled (reserved for leader)", silent = true },
+		["<BS>"] = { "<Nop>", "Disabled in normal mode", silent = true },
+		["<leader>y"] = { "<Nop>", "Disabled", silent = true },
+		["<leader>cc"] = { "<Nop>", "Disabled", silent = true },
+		["q:"] = { "<Nop>", "Disable command history window", silent = true },
 
 		["<leader>a"] = {
 			function()
@@ -79,8 +79,8 @@ M.general = {
 	v = {
 		["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
 		["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
-		["<"] = { "<gv", "Indent line" },
-		[">"] = { ">gv", "Indent line" },
+		["<"] = { "<gv", "Dedent selection" },
+		[">"] = { ">gv", "Indent selection" },
 		["<leader>rw"] = {
 			"y:%s/<C-r>0//gc<Left><Left><Left>",
 			"Substitute selection everywhere with confirm",
@@ -98,7 +98,7 @@ M.general = {
 		["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
 		-- Don't copy the replaced text after pasting in visual mode
 		-- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-		["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
+		["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Paste without overwriting yank register", opts = { silent = true } },
 
 		["<C-Esc>"] = { "<Esc>", "Enter normal mode" },
 	},
@@ -192,14 +192,14 @@ M.lspconfig = {
 			function()
 				vim.diagnostic.goto_prev({ float = { border = "rounded" } })
 			end,
-			"Goto prev",
+			"Goto prev diagnostic",
 		},
 
 		["<leader>dn"] = {
 			function()
 				vim.diagnostic.goto_next({ float = { border = "rounded" } })
 			end,
-			"Goto next",
+			"Goto next diagnostic",
 		},
 	},
 }
@@ -342,7 +342,7 @@ M.telescope = {
 					prompt_title = "Live Grep in Open Files",
 				})
 			end,
-			"Telescope grep open Word",
+			"Live grep in open buffers",
 		},
 		["<leader>t/"] = {
 			function()
@@ -350,7 +350,7 @@ M.telescope = {
 					require("telescope.themes").get_dropdown({ previewer = false })
 				)
 			end,
-			"Telescope Find",
+			"Fuzzy find in current buffer",
 		},
 	},
 }
@@ -572,10 +572,10 @@ M.vimtex = {
 	plugin = true,
 
 	n = {
-		["<leader>ll"] = { "<cmd>VimtexCompile<CR>", "Vimtex:compile" },
-		["<leader>lv"] = { "<cmd>VimtexView<CR>", "Vimtex: openPDF" },
-		["<leader>lc"] = { "<cmd>VimtexClean<CR>", "Vimtex: cleanbuild files" },
-		["<leader>le"] = { "<cmd>VimtexErrors<CR>", "Vimtex: toggleerrors list" },
+		["<leader>ll"] = { "<cmd>VimtexCompile<CR>", "Vimtex: Compile" },
+		["<leader>lv"] = { "<cmd>VimtexView<CR>", "Vimtex: Open PDF" },
+		["<leader>lc"] = { "<cmd>VimtexClean<CR>", "Vimtex: Clean build files" },
+		["<leader>le"] = { "<cmd>VimtexErrors<CR>", "Vimtex: Toggle errors list" },
 	},
 }
 return M
