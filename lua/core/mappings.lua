@@ -275,7 +275,30 @@ M.telescope = {
 	plugin = true,
 
 	n = {
-		["_"] = { "<cmd>Telescope buffers show_all_buffers=true<CR>", "Telescope Buffers (all)" },
+		["_"] = {
+			function()
+				local hidden_terms = {}
+				for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+					if
+						vim.api.nvim_buf_is_loaded(bufnr)
+						and vim.api.nvim_get_option_value("buftype", { buf = bufnr }) == "terminal"
+						and vim.fn.buflisted(bufnr) == 0
+					then
+						vim.bo[bufnr].buflisted = true
+						table.insert(hidden_terms, bufnr)
+					end
+				end
+				require("telescope.builtin").buffers({ show_all_buffers = true })
+				vim.schedule(function()
+					for _, bufnr in ipairs(hidden_terms) do
+						if vim.api.nvim_buf_is_valid(bufnr) then
+							vim.bo[bufnr].buflisted = false
+						end
+					end
+				end)
+			end,
+			"Telescope Buffers (all)",
+		},
 		["<leader>tt"] = {
 			"<cmd>TodoTelescope keywords=BUG,REVIEW,DEEPREVIEW,NEW-CODE,PR-REVIEW<CR>",
 			"Search custom todo keywords",
