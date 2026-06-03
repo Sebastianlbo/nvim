@@ -61,6 +61,29 @@ M.general = {
 			"Duplicate line and comment original",
 		},
 
+		["<leader>li"] = {
+			function()
+				local word = vim.fn.getreg("0")
+				local row = vim.api.nvim_win_get_cursor(0)[1]
+				local indent = vim.api.nvim_get_current_line():match("^(%s*)")
+				local lines = {
+					indent .. "logger.debug(",
+					indent
+						.. '    "\\n\\nSTART=================================================================================\\n"',
+					indent
+						.. '    + "--------------------------------------------------------------------------------------\\n\\n"',
+					indent .. '    + f"' .. word .. " : {" .. word .. '}"',
+					indent
+						.. '    + "\\n\\n--------------------------------------------------------------------------------------\\n"',
+					indent
+						.. '    + "===================================================================================END\\n\\n"',
+					indent .. ")",
+				}
+				vim.api.nvim_buf_set_lines(0, row, row, false, lines)
+			end,
+			"Insert logger.info debug block",
+		},
+
 		["<leader>fm"] = {
 			function()
 				vim.lsp.buf.format({ async = true })
@@ -91,6 +114,30 @@ M.general = {
 		["K"] = { ":m '<-2<CR>gv=gv", "Move selection up", opts = { noremap = true } },
 
 		["<C-Esc>"] = { "<Esc>", "Enter normal mode" },
+
+		["<leader>li"] = {
+			function()
+				local word = vim.fn.getreg("0")
+				local row = vim.api.nvim_win_get_cursor(0)[1]
+				local indent = vim.api.nvim_get_current_line():match("^(%s*)")
+				local lines = {
+					indent .. "logger.debug(",
+					indent
+						.. '    "\\n\\nSTART=================================================================================\\n"',
+					indent
+						.. '    + "--------------------------------------------------------------------------------------\\n\\n"',
+					indent .. '    + f"' .. word .. " : {" .. word .. '}"',
+					indent
+						.. '    + "\\n\\n--------------------------------------------------------------------------------------\\n"',
+					indent
+						.. '    + "===================================================================================END\\n\\n"',
+					indent .. ")",
+				}
+				vim.api.nvim_buf_set_lines(0, row, row, false, lines)
+				vim.api.nvim_feedkeys("x", "n", false)
+			end,
+			"Insert logger.info debug block",
+		},
 	},
 
 	x = {
