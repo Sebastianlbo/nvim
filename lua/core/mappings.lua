@@ -23,7 +23,7 @@ M.general = {
 		["<BS>"] = { "<Nop>", "Disabled in normal mode", silent = true },
 		["<leader>y"] = { "<Nop>", "Disabled", silent = true },
 		["<leader>cc"] = { "<Nop>", "Disabled", silent = true },
-		["q:"] = { "<Nop>", "Disable command history window", silent = true },
+		["q:"] = { ":q", "Disable command history window" },
 
 		["<leader>a"] = {
 			function()

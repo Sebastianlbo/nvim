@@ -20,6 +20,7 @@ require("lazy").setup(plugins, utils.lazy_nvim)
 opt.laststatus = 3
 opt.showmode = true
 
+opt.cedit = ""
 opt.cmdheight = 1
 opt.pumheight = 8 -- keep completion menu short so docs have room
 opt.scrolloff = 10 -- avoid sitting on the last line in the first place
