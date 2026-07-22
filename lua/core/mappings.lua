@@ -63,7 +63,11 @@ M.general = {
 
 		["<leader>li"] = {
 			function()
-				local word = vim.fn.getreg("0")
+				local word = vim.fn.expand("<cword>")
+				if word == "" then
+					vim.notify("No word under cursor", vim.log.levels.WARN)
+					return
+				end
 				local row = vim.api.nvim_win_get_cursor(0)[1]
 				local indent = vim.api.nvim_get_current_line():match("^(%s*)")
 				local lines = {
@@ -81,7 +85,7 @@ M.general = {
 				}
 				vim.api.nvim_buf_set_lines(0, row, row, false, lines)
 			end,
-			"Insert logger.info debug block",
+			"Insert logger.debug block for word under cursor",
 		},
 
 		["<leader>fm"] = {
