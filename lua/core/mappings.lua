@@ -390,6 +390,19 @@ M.telescope = {
 			end,
 			"Find Files (non-ignored)",
 		},
+		["<leader>tjd"] = {
+			function()
+				vim.ui.input({ prompt = "Directory: ", completion = "dir" }, function(dir)
+					if dir and dir ~= "" then
+						require("telescope.builtin").find_files({
+							search_dirs = { dir },
+							prompt_title = "Find Files in " .. dir,
+						})
+					end
+				end)
+			end,
+			"Find Files in directory",
+		},
 		["<leader>to"] = { "<cmd>Telescope oldfiles<CR>", "Telescope Oldfiles" },
 		["<leader>td"] = { "<cmd>Telescope diagnostics bufnr=0<CR>", "Telescope Diagnostics (current file)" },
 		["<leader>tad"] = { "<cmd>Telescope diagnostics<CR>", "Telescope All Diagnostics" },
@@ -408,6 +421,19 @@ M.telescope = {
 				})
 			end,
 			"Live Grep (non-ignored)",
+		},
+		["<leader>twd"] = {
+			function()
+				vim.ui.input({ prompt = "Directory: ", completion = "dir" }, function(dir)
+					if dir and dir ~= "" then
+						require("telescope.builtin").live_grep({
+							search_dirs = { dir },
+							prompt_title = "Live Grep in " .. dir,
+						})
+					end
+				end)
+			end,
+			"Live Grep in directory",
 		},
 		["<leader>tx"] = {
 			function()
