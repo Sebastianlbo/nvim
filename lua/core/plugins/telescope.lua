@@ -32,6 +32,7 @@ return {
         layout_config = {
           horizontal = { prompt_position = "bottom", preview_width = 0.6 },
         },
+        dynamic_preview_title = true,
         mappings = {
           i = {
             ["<C-k>"] = actions.preview_scrolling_up,
@@ -43,7 +44,7 @@ return {
           },
         },
         file_ignore_patterns = { "node_modules", "%.git", ".venv" },
-        path_display = { filename_first = { reverse_directories = false } },
+        path_display = { "filename_first" },
       },
       pickers = {
 
